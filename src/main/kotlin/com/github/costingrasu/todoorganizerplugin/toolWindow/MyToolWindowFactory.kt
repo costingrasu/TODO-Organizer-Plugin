@@ -88,7 +88,8 @@ class MyToolWindowFactory : ToolWindowFactory {
         private fun buildTree(todoItems: List<TodoItem>, parentNode: DefaultMutableTreeNode, addedItems: MutableSet<String>) {
             val todoMap = mutableMapOf<String, TodoItem>()
             todoItems.forEach { item ->
-                val itemText = "${item.tag}: ${item.text} (Line: ${item.lineNumber})"
+                // Only show the tag and text, removing characters before the first space in item.text
+                val itemText = "${item.tag}: ${item.text.substringAfter(" ")}"
 
                 // Prevent adding duplicate items
                 if (!addedItems.contains(itemText)) {
@@ -111,7 +112,7 @@ class MyToolWindowFactory : ToolWindowFactory {
 
         // Find a specific TodoItem based on the text (used when selecting a tree item)
         private fun findTodoItem(todoItems: List<TodoItem>, text: String): TodoItem? {
-            return todoItems.find { "${it.tag}: ${it.text} (Line: ${it.lineNumber})" == text }
+            return todoItems.find { "${it.tag}: ${it.text.substringAfter(" ")}" == text }
         }
 
         // Navigates to the line containing the TODO
