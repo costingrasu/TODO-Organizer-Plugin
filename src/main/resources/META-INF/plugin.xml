@@ -1,9 +1,12 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
-    <id>com.github.costingrasu.todoorganizerplugin</id>
-    <name>TODO-Organizer-Plugin</name>
+    <id>costingrasu.todoorganizer</id>
+    <name>TODO-Organizer</name>
     <vendor>costingrasu</vendor>
 
+    <description>A plugin to organize TODOs, FIXMEs, and BUGs hierarchically</description>
+
+    <version>1.0.0</version>
     <depends>com.intellij.modules.platform</depends>
 
     <resource-bundle>messages.MyBundle</resource-bundle>
