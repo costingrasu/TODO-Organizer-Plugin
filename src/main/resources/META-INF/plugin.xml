@@ -14,6 +14,8 @@
         <!-- Tool Window Registration -->
         <toolWindow id="TODO Organizer"
                     anchor="right"
-                    factoryClass="com.github.costingrasu.todoorganizerplugin.toolWindow.MyToolWindowFactory"/>
+                    factoryClass="com.github.costingrasu.todoorganizerplugin.toolWindow.MyToolWindowFactory"
+                    icon = "/icons/image.png"/>
     </extensions>
+
 </idea-plugin>
