@@ -15,8 +15,5 @@
         <toolWindow id="TODO Organizer"
                     anchor="right"
                     factoryClass="com.github.costingrasu.todoorganizerplugin.toolWindow.MyToolWindowFactory"/>
-
-        <!-- Optional Post-startup Activity -->
-        <postStartupActivity implementation="com.github.costingrasu.todoorganizerplugin.startup.MyProjectActivity" />
     </extensions>
 </idea-plugin>
