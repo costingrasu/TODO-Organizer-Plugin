@@ -1,51 +1,38 @@
 # TODO-Organizer-Plugin
 
-![Build](https://github.com/costingrasu/TODO-Organizer-Plugin/workflows/Build/badge.svg)
-[![Version](https://img.shields.io/jetbrains/plugin/v/MARKETPLACE_ID.svg)](https://plugins.jetbrains.com/plugin/MARKETPLACE_ID)
-[![Downloads](https://img.shields.io/jetbrains/plugin/d/MARKETPLACE_ID.svg)](https://plugins.jetbrains.com/plugin/MARKETPLACE_ID)
+## Project Overview
+The **TODO Organizer Plugin** is an IntelliJ plugin designed to efficiently manage and interact with TODOs, FIXMEs, and BUG comments in code. It provides functionality to sync these comments with GitHub issues, ensuring better task management and faster development processes.
 
-## Template ToDo list
-- [x] Create a new [IntelliJ Platform Plugin Template][template] project.
-- [ ] Get familiar with the [template documentation][template].
-- [ ] Adjust the [pluginGroup](./gradle.properties) and [pluginName](./gradle.properties), as well as the [id](./src/main/resources/META-INF/plugin.xml) and [sources package](./src/main/kotlin).
-- [ ] Adjust the plugin description in `README` (see [Tips][docs:plugin-description])
-- [ ] Review the [Legal Agreements](https://plugins.jetbrains.com/docs/marketplace/legal-agreements.html?from=IJPluginTemplate).
-- [ ] [Publish a plugin manually](https://plugins.jetbrains.com/docs/intellij/publishing-plugin.html?from=IJPluginTemplate) for the first time.
-- [ ] Set the `MARKETPLACE_ID` in the above README badges. You can obtain it once the plugin is published to JetBrains Marketplace.
-- [ ] Set the [Plugin Signing](https://plugins.jetbrains.com/docs/intellij/plugin-signing.html?from=IJPluginTemplate) related [secrets](https://github.com/JetBrains/intellij-platform-plugin-template#environment-variables).
-- [ ] Set the [Deployment Token](https://plugins.jetbrains.com/docs/marketplace/plugin-upload.html?from=IJPluginTemplate).
-- [ ] Click the <kbd>Watch</kbd> button on the top of the [IntelliJ Platform Plugin Template][template] to be notified about releases containing new features and fixes.
+## Our Idea
+The core idea behind this project was to automate the process of managing TODOs and related tasks by syncing them with GitHub issues. The plugin allows developers to organize and track comments directly within the IDE, which are automatically mapped to corresponding GitHub issues. Additionally, if an issue is not present in GitHub, the plugin will create it, ensuring no task is left behind.
 
-<!-- Plugin description -->
-This Fancy IntelliJ Platform Plugin is going to be your implementation of the brilliant ideas that you have.
+## Technologies Used
 
-This specific section is a source for the [plugin.xml](/src/main/resources/META-INF/plugin.xml) file which will be extracted by the [Gradle](/build.gradle.kts) during the build process.
+### 1. **UI (User Interface)**
+- **Swing / JBPanel**: Used for creating the UI components such as the tool window that displays TODO comments.
+- **JTree**: For displaying TODOs in a hierarchical structure.
+- **Asynchronous Updates**: Ensuring smooth UI interactions while the plugin fetches data or performs tasks in the background.
 
-To keep everything working, do not remove `<!-- ... -->` sections. 
-<!-- Plugin description end -->
+### 2. **Core Logic**
+- **Coroutines**: Utilized Kotlin Coroutines for handling asynchronous tasks such as scanning the file for TODOs and interacting with GitHub's API.
+- **Channels**: To manage communication between different parts of the application, particularly for fetching and updating TODOs and GitHub issues in parallel.
+- **Data Processing**: The plugin processes code comments and matches them with relevant GitHub issues using string matching, and updates them when necessary.
 
-## Installation
+### 3. **PSI (Program Structure Interface)**
+- **PSI Tree Traversal**: The plugin scans the opened files by traversing their PSI tree to find specific comment tags like TODO, FIXME, or BUG.
+- **PSI Integration**: Ensures precise and efficient extraction of code comments without interfering with the code's structure, providing a clean approach to scanning files.
 
-- Using the IDE built-in plugin system:
-  
-  <kbd>Settings/Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>Marketplace</kbd> > <kbd>Search for "TODO-Organizer-Plugin"</kbd> >
-  <kbd>Install</kbd>
-  
-- Using JetBrains Marketplace:
+### 4. **GitHub API Handling**
+- **GitHub REST API**: Interacts with the GitHub API to fetch, create, and update issues based on the TODOs in the code.
+- **API Authentication**: Uses OAuth tokens for secure communication with GitHub.
+- **Issue Management**: Automatically creates new issues when no matching issue exists, updates existing issues, and closes issues that no longer have corresponding TODOs.
 
-  Go to [JetBrains Marketplace](https://plugins.jetbrains.com/plugin/MARKETPLACE_ID) and install it by clicking the <kbd>Install to ...</kbd> button in case your IDE is running.
-
-  You can also download the [latest release](https://plugins.jetbrains.com/plugin/MARKETPLACE_ID/versions) from JetBrains Marketplace and install it manually using
-  <kbd>Settings/Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>⚙️</kbd> > <kbd>Install plugin from disk...</kbd>
-
-- Manually:
-
-  Download the [latest release](https://github.com/costingrasu/TODO-Organizer-Plugin/releases/latest) and install it manually using
-  <kbd>Settings/Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>⚙️</kbd> > <kbd>Install plugin from disk...</kbd>
-
+## Future Ideas
+- **Advanced Matching**: Enhance the logic for matching TODOs with issues, including more advanced matching algorithms.
+- **Priority System**: Introduce a priority system for TODOs, allowing users to prioritize tasks and synchronize them with GitHub milestones.
+- **Issue Commenting**: Extend the feature set to allow more detailed issue commenting directly from the plugin.
 
 ---
 Plugin based on the [IntelliJ Platform Plugin Template][template].
 
 [template]: https://github.com/JetBrains/intellij-platform-plugin-template
-[docs:plugin-description]: https://plugins.jetbrains.com/docs/intellij/plugin-user-experience.html#plugin-description-and-presentation
