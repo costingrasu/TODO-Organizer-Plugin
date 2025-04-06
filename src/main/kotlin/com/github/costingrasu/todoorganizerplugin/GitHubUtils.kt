@@ -8,7 +8,7 @@ import java.io.IOException
 
 // Function to load GitHub token from .env file
 fun getGitHubToken(): String? {
-    val token = "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"  // Replace with your GitHub token
+    val token = "KEY"  // Replace with your GitHub token
 
     if (token.isEmpty()) {
         throw IllegalStateException("GitHub token is missing or empty")
@@ -94,8 +94,9 @@ fun createGitHubIssue(repository: String, token: String, todo: TodoItem) {
 fun compareTodosWithIssues(todos: List<TodoItem>, issues: List<Issue>, repository: String, token: String) {
     todos.forEach { todo ->
         val matchingIssue = issues.find { issue ->
-            // Compare TODO text with issue title or body
-            issue.title.contains(todo.text, ignoreCase = true) || issue.body.contains(todo.text, ignoreCase = true)
+            // Use safe calls to avoid null pointer exceptions when comparing
+            issue.title?.contains(todo.text, ignoreCase = true) == true ||
+                    issue.body?.contains(todo.text, ignoreCase = true) == true
         }
 
         if (matchingIssue != null) {
@@ -112,7 +113,9 @@ fun compareTodosWithIssues(todos: List<TodoItem>, issues: List<Issue>, repositor
     // Check for issues in GitHub that don't have corresponding TODOs
     issues.forEach { issue ->
         val isTodoExist = todos.any { todo ->
-            issue.title.contains(todo.text, ignoreCase = true) || issue.body.contains(todo.text, ignoreCase = true)
+            // Use safe calls to avoid null pointer exceptions when comparing
+            issue.title?.contains(todo.text, ignoreCase = true) == true ||
+                    issue.body?.contains(todo.text, ignoreCase = true) == true
         }
 
         if (!isTodoExist) {
