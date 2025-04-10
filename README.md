@@ -1,7 +1,7 @@
-# TODO-Organizer-Plugin
+# IssueTrackr Plugin
 
 ## Project Overview
-The **TODO Organizer Plugin** is an IntelliJ plugin designed to efficiently manage and interact with TODOs, FIXMEs, and BUG comments in code. It provides functionality to sync these comments with GitHub issues, ensuring better task management and faster development processes.
+The **IssueTrackr Plugin** is an IntelliJ plugin designed to efficiently manage and interact with TODOs, FIXMEs, and BUG comments in code. It provides functionality to sync these comments with GitHub issues, ensuring better task management and faster development processes.
 
 ## Our Idea
 The core idea behind this project was to automate the process of managing TODOs and related tasks by syncing them with GitHub issues. The plugin allows developers to organize and track comments directly within the IDE, which are automatically mapped to corresponding GitHub issues. Additionally, if an issue is not present in GitHub, the plugin will create it, ensuring no task is left behind.
